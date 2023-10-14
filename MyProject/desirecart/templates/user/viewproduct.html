@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Products Details</title>
+    {% endblock %}
+{% block content %}
+{% load static %}
+<style>
+    .nikkuchikkubtn:hover{
+    background:green;
+    font-weight:bold;
+    font-style:italic;
+    font-family:"Arial",Helvetica,sans-serif;
+       border:none
+    }
+</style>
+<div class="container">
+    <div class="row border bg-light my-5 p-5">
+        {% if pdata %}
+        {% for r in pdata %}
+        <div class="col-sm-5">
+            <img src="/{{r.ppic}}" width="100%" class="img-thumbnail">
+        </div>
+        <div class="col-sm-7">
+            <h2>{{r.name}}</h2>
+            <h3 class="text-warning"><b class="text-dark">Price:</b> <span class="fa fa-inr"></span>{{r.disprice}}/- <s class="text-danger">{{r.price}}/</s></h3>
+<p>{{r.description}}</p>
+            <b>Size:</b> <b class="btn btn-outline-success">{{r.size}}</b>
+            <div class="mt-2 rounded" style="background:{{r.color}};height:40px;width:60px"></div>
+            <a href="/user/signin/?pid={{r.id}}&page=cart"   target="_blank" class="btn btn-warning text-white nikkuchikkubtn mt-2">ADD TO CART</a>
+            <a href="/user/signin/?pid={{r.id}}&page=order" target="_blank" class="btn btn-warning text-white nikkuchikkubtn mt-2">ORDER NOW</a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

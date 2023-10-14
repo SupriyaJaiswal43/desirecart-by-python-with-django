@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>
+    SIGN UP
+</title>
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-12 h2 text-center">
+    SIGN <b class="text-warning">UP<span class="fa fa-users"></span></b>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 reg">
+            <form method="post" action="/user/register/" enctype="multipart/form-data"/>
+            {% csrf_token %}
+            Name<input type="text" name="name" class="form-control"/>
+            EMAIL<input type="email" name="email" class="form-control"/>
+            Mobile No<input type="number" name="mob" class="form-control"/>
+            Profile Picture<input type="file" name="upic" class="form-control"/>
+            Password<input type="password" name="passwd" class="form-control"/>
+            Confirm Password<input type="password" name="cpasswd" class="form-control"/>
+            Address<textarea class="form-control" name="address"></textarea><br/>
+            <input type="submit" value="REGISTER"class="btn btn-warning"/>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+{% endblock %}

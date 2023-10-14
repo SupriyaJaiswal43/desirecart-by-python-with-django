@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {% endblock %}
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css'%}" rel="stylesheet">
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+    <style>
+        .t{
+        min-height:40px;
+        text-align:center;
+        }
+        .social .fa{
+        margin-left:12px;
+        font-size:18px;
+        height:25px;
+        width:25px;
+        border-radius:10px;
+        line-height:25px;
+        }
+        .social .fa:hover{
+        background:red;
+        color:white;
+        transition:all ease 0.5s;
+        }
+        .logog{
+        font-size:28px;
+        }
+        .txt{
+        height:60px;
+        }
+       .c{
+        color:teal;
+        }
+        .menu{
+        min-height:50px;
+        background:black;
+        }
+        .slider h4{
+        color:red;
+        font-size:35px
+        }
+        .slider p{
+        color:teal;
+        }
+        .cat{
+        min-height:300px
+        }
+
+        .mens{
+        background:url('{% static "images/banner-1.jpg"%}');
+        min-height:250px;
+        }
+        .womens{
+        background:url('{% static "images/banner-2.jpg"%}');
+        min-height:250px;
+        }
+        .kids{
+        background:url('{% static "images/banner-3.jpg"%}');
+        min-height:250px;
+        }
+        .mens h5, .womens h5, .kids h5{
+        height:45px;
+        width:100px;
+        background:white;
+        text-align:center;
+        padding-top:2%;
+        margin:30% auto
+        }
+        #menu li a{
+        color:white;
+        }
+        #menu li a:hover{
+        color:red;
+        transition:all ease 0.5s;
+        }
+        .products{
+        min-height:300px;
+        background:#f8f9f1;
+        }
+        .btno{
+        border:none;
+        background:teal;
+        color:white;
+        text-decoration:none;
+        text-align:center;
+        border-radius:3px;
+        font-size:14px;
+        }
+        .service{
+        min-height:200px;
+        background:#f8f9f1;
+        }
+        .ufooter{
+        min-height:300px;
+        border-bottom:1px solid #f8f9f1;
+        }
+        .bfooter{
+        min-height:50px;
+        }
+
+        .fsocial .fa:hover{
+        background:red;
+        transition:all ease 0.5s;
+        }
+        .fsocial span{
+            height:40px;
+            width:40px;
+            color:white;
+            line-height:40px;
+            margin-left:5px;
+            background:silver;
+            text-align:center;
+            border-radius:50%;
+            font-size:21px;
+        }
+.nikkuac:hover{
+text-decoration:none;
+color:red;
+
+}
+.nikkuac{
+text-decoration:none;
+color:silver;
+}
+.nikkulogin{
+text-decoration:none;
+color:black;
+}
+.nikkulogin:hover{
+text-decoration:none;
+font-weight:bold;
+color:red;
+}
+.nikkulogout{
+text-decoration:none;
+color:black;
+font-size:18px;
+}
+.nikkulogout:hover{
+color:red;
+font-weight:bold;
+}
+
+
+
+.icons
+{
+position:fixed;
+top:30%;
+left:0%;
+width:200px;
+display:flex;
+flex-direction:column;
+z-index:1;
+}
+.icons a
+{
+text-decoration:none;
+text-transform:uppercase;
+padding:5px;
+font-size:22px;
+font-family:active;
+text-align:right;
+color:white;
+border-radius:0px 50px 50px 0px;
+transform:translate(-145px,0px);
+transition:all ease 0.3s;
+}
+.icons a:hover
+{
+transform:translate(0px,0px);
+transition:all ease 0.5s;
+}
+.feedback
+{
+background:red;
+color:black;
+}
+.icons a:hover i
+{
+transform:rotate(360deg);
+}
+.icons a i
+{
+transition:all ease 0.5s;
+margin-left:15px;
+background:white;
+height:35px;
+width:35px;
+color:teal;
+text-align:center;
+line-height:35px;
+border-radius:50px;
+}
+.icons a i.fa-comments
+{
+color:red;
+}
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row t border-top border-bottom py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 border-left border-right">
+                    {% if user.is_authenticated %}
+                    <span class="fa fa-envelope"> {{request.user}}</span>
+                    <a class="nikkulogout" href="/user/logout/" ><span class="fa fa-sign-out"></span></a>
+                    {% else %}
+                    <a class="nikkulogin" href="/user/signin/" target="_blank">Click here to login</a>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4 ">
+                    <span class="fa fa-phone"> +91 9140135020</span>
+                </div>
+                <div class="col-sm-4 border-left border-right social">
+                    <span class="fa fa-facebook"></span>
+                    <span class="fa fa-twitter-square"></span>
+                    <span class="fa fa-instagram"></span>
+                    <span class="fa fa-youtube"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row header py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 logog">
+                   <h1><a style="color:black;text-decoration:none;font-style:italic;" href="/user/index/"><span>Desire<b style="color:teal;font-style:italic;">Cart<span class="fa fa-shopping-cart"></span></b></span></a></h1>
+                </div>
+                <div class="col-sm-6">
+                <div class="input-group mb-3">
+  <input type="text" class="form-control rounded-0 txt" placeholder="What do you need?" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append" >
+      <span class="input-group-text rounded-0 pl-3" style="background:red;color:white;width:50px;" id="basic-addon2"><span class="fa fa-search"></span></span>
+  </div>
+</div>
+                </div>
+                <div class="col-sm-3 my-3 text-right">
+                    <a href="/user/cart/" ><span class="fa fa-shopping-cart c" style="font-size:30px;"></span><div class="float-right text-center text-warning bg-danger" style="margin-top:-9px;margin-left:-3px;font-size:17px;height:20px;width:20px;background:red;border-radius:50%;border:2px solid orange;"><sup >{{cart}}</sup></div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row menu" style="background:teal;">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light" >
+  <a class="navbar-brand" href="/user/index/" style="color:red">DESIRECART</a>
+  <button class="navbar-toggler" type="button" style="background:white;" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto " id="menu"  style="background:teal;">
+      <li class="nav-item active">
+        <a class="nav-link" href="/user/index/"><span class="fa fa-home"></span> HOME <span class="sr-only">(current)</span></a>
+      </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa fa-product-hunt"></span> PRODUCT
+        </a>
+        <div  class="dropdown-menu" style="background:teal;" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/user/mensproduct/">MEN'S</a>
+          <a class="dropdown-item" href="/user/womensproduct/">WOMEN'S</a>
+
+          <a class="dropdown-item" href="/user/kidsproduct/">KID'S</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/orders/"><span class="fa fa-shopping-cart"></span> MY ORDERS</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/user/profile/"><span class="fa fa-user"></span> MY PROFILE</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/user/contact/"><span class="fa fa-phone"></span> CUSTOMER SUPPORT</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/user/register/"><span class="fa fa-user"></span> SIGN-UP</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/admin/"><span class="fa fa-key"></span> SIGN-IN</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+    </div>
+    </div>
+
+
+ <div class="icons">
+    <a href="/user/feedback/"class="feedback">Feedback <i class="fa fa-comments"></i></a>
+</div>
+
+    <div class="row main">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+     <div class="row ufooter" style="background:teal;">
+        <div class="container  p-5">
+            <div class="row ">
+                <div class="col-sm-4">
+                    <span style="color:white;font-size:33px; font-style:italic;">Desire<b style="color:red;">Cart <span class="fa fa-shopping-cart"></span> </b></span>
+                    <br>
+                    <br>
+                    <p style="color:silver;">Address: Sultanpur,UP,India,232333</p>
+                    <p style="color:silver;">Phone: 9140135020</p>
+                    <p style="color:silver;">E-mail: jharitanjali@gmail.com</p>
+                    <div class="row">
+                    <div class="col-sm-12 fsocial">
+                        <a href="#"><span  class="fa fa-facebook"></span></a>
+                        <a href="#"><span class="fa fa-twitter-square"></span></a>
+                        <a href="#"><span class="fa fa-instagram"></span></a>
+                        <a href="#"><span class="fa fa-youtube"></span></a>
+
+
+
+
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-2">
+                    <p style="color:white;font-size:25px;">Information</p>
+                    <p><a class="nikkuac" href="#" >About Us</a></p>
+                    <p><a class="nikkuac" href="#" >Checkout</a></p>
+                    <p><a class="nikkuac" href="#" >Contact</a></p>
+                    <p><a class="nikkuac" href="#" >Services</a></p>
+                </div>
+                <div class="col-sm-2">
+                    <p style="color:white;font-size:25px;">My Account</p>
+                    <p><a class="nikkuac" href="#" >My Account</a></p>
+                    <p><a class="nikkuac"href="#" >Contact</a></p>
+                    <p><a class="nikkuac"href="#" >Shopping Cart</a></p>
+                    <p><a class="nikkuac"href="#" >Shop</a></p>
+                </div>
+                <div class="col-sm-4">
+                    <p style="color:white;font-size:25px;">Join Our Newsletter Now</p>
+                    <p style="color:silver;">Get E-mail updates about our latest shop and special offers.</p>
+                    <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Enter Your Mail" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="input-group-text border-0" style="background:red;color:white;" id="basic-addon2">SUBSCRIBE</button>
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bfooter" style="background:teal;">
+         <div class="container text-center my-2">
+             <span class="text-white "> &copy; Copyright 2020 All rights reserved | Designed by- Supriya Jaiswal</span>
+         </div>
+
+    </div>
+</div>
+</body>
+</html>

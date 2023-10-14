@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Sign-In</title>
+    {% endblock %}
+{% block content %}
+{% load static %}
+<style>
+    .ritu{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+    }
+    .ritu:hover{
+    text-decoration:none;
+    color:orange;
+    }
+
+</style>
+<script>
+    $(document).ready(function(){
+    $("#btnmodal").click();
+    $("#exampleModal").on('hidden.bs.modal',function(){
+    window.close();
+    });
+    });
+</script>
+<!-- Button trigger modal -->
+<button id="btnmodal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Login
+</button>
+
+{% if alreadyadded %}
+<script>
+    alert("This product is already added in your cart");
+    window.close();
+</script>
+{% endif %}
+
+{% if alreadylogin %}
+
+<script>
+    window.close();
+</script>
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background: linear-gradient(to top right,#0080ff,#00ff80);">
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLabel">Sign-In Here</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+                    {% if User %}
+                    <div class="alert alert-success">Login Successfully. Close to continue</div>
+                    {% endif %}
+
+                    {% if Nouser %}
+                    <div class="alert alert-danger">Username and password is wrong</div>
+                    {% endif %}
+                </div>
+          <form class="form" method="post" action="/user/signin1/" enctype="multipart/form-data">
+					{% csrf_token %}
+        <input type="text" name="uname" placeholder="Enter your email.." class="form-control"/><br>
+        <input type="password" name="password" placeholder="Enter your password" class="form-control"/><br>
+          <center><button type="submit" class="btn btn-warning text-white" >LOGIN</button></center>
+          </form>
+      </div>
+
+          <center><span>Have not account yet? <a class="ritu" href="/user/register/">SIGNUP</a> </span></center>
+        <br>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

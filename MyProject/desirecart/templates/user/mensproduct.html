@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Men's Products</title>
+    {% endblock %}
+{% block content %}
+{% load static %}
+<style>
+    .nikkuchikkubtn:hover{
+    background:green;
+    font-weight:bold;
+       border:none;
+    }
+</style>
+<div class="col-sm-3 p-4">
+    <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active" style="background:teal; border:none;">
+      <h2>OUR PRODUCTS</h2>
+  </a>
+        {% if subcat %}
+        {% for r in subcat %}
+
+  <a href="/user/mensproduct?msg={{r.id}}" class="list-group-item list-group-item-action">{{r.name}}</a>
+ {% endfor %}
+        {% else %}
+        <div class="alert alert-danger text-center">No Record Found..</div>
+{% endif %}
+</div>
+</div>
+<div class="col-sm-9">
+    <div class="row p-4 ">
+        <div class="col-sm-12  rounded p-3  text-center text-white h2"style="background:teal;">
+            MEN'S PRODUCT
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                {% if data %}
+                {% for r in data %}
+
+                <div class="col-sm-4">
+                    <div class="row p-4">
+                        <div class="card">
+
+  <img src="/{{r.ppic}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{r.name}}</h5>
+    <p class="card-text">{{r.description}}</p>
+      <b>SIZE:</b>{{r.size}} <b>PRICE: </b><big class="text-success">{{r.disprice}}/- <s class="text-danger"> {{r.price}}/</s></big><br>
+       <div style="background:{{r.color}};border-radius:2px;height:20px;width:20px;"></div><br>
+    <a href="/user/signin/?pid={{r.id}}&page=cart" target="_blank" class="btn text-white nikkuchikkubtn float-left"style="background:teal">ADD TO CART</a>
+    <a href="/user/viewproduct/?pid={{r.id}}" class="btn text-white nikkuchikkubtn float-right"style="background:teal">ORDER NOW</a>
+  </div>
+</div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

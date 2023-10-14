@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Cart Items</title>
+    {% endblock %}
+{% block content %}
+{% load static %}
+<div class="col-sm-12 text-center h2 pt-3" style="color:teal;">YOUR SELECTED ITEMS <span class="fa fa-shopping-cart" style="color:red;"></span> </div>
+<div class="container-fluid py-5">
+<table class="table">
+  <thead class="thead-light">
+
+    <tr>
+      <th scope="col">ITEMS PICTURE</th>
+      <th scope="col">PRODUCT NAME</th>
+      <th scope="col">PRODUCT PRICE</th>
+      <th scope="col">SIZE</th>
+      <th scope="col">COLOUR</th>
+      <th scope="col">DATE</th>
+      <th scope="col">PRODUCT ID</th>
+      <th scope="col">CANCEL</th>
+      <th scope="col">BUY NOW</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% if cartItems %}
+  {% for r in cartItems %}
+
+    <tr>
+      <td><img src="/{{r.6}} "height="100px"></td>
+      <td>{{r.1}}</td>
+      <td>{{r.3}}</td>
+      <td>{{r.4}}</td>
+      <td><div style="height:40px;width:60px;border-radius:3px;background:{{r.5}}"></div></td>
+      <td>{{r.8}}</td>
+      <td>{{r.0}}</td>
+      <td><a href="/user/cart/?del={{r.9}}" class="btn btn-danger"> CANCEL</a> </td>
+      <td><a href="/user/signin/?pid={{r.0}}&page=orderfromcart" class="btn btn-success" style="width:120px;"> ORDER NOW</a> </td>
+    </tr>
+  {% endfor %}
+{% endif %}
+
+  </tbody>
+</table>
+</div>
+
+
+
+{% endblock %}

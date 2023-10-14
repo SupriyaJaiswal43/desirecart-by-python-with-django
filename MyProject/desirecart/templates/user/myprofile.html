@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Update Profile</title>
+    {% endblock %}
+
+{% block content %}
+{% load static %}
+<style>
+    .profile-img{
+    position:relative;
+    height:300px;
+    width:300px;
+    border-radius:50%;
+    margin:auto;
+    overflow:hidden;
+    box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+    transition:all 0.3s ease-in;
+    z-index:2;
+    border-color:5px solid teal;
+
+    }
+    .profile-img img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+    }
+    .overlay{
+    position:fixed;
+    height:100vh;
+    width:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.2);
+    display:none;
+    z-index:1;
+    }
+.profile-img:hover{
+border-radius:0;
+transform:scale(1.5);
+}
+.profile-img:hover +.overlay{
+display:block;
+}
+</style>
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-sm-12 text-center h1" style="background:orange"><b style="font-color:white;">MY PROFILE</b><span class="fa fa-star"></span></div>
+    </div>
+    {% if udetails %}
+    {% for r in udetails %}
+    <div class="row  my-5 bg-light p-5">
+        <div class="col-sm-4 text-center profile-img">
+            <img src="/{{r.userpic}}" style="width:100%;" class="img-thumbnail" style="text-align:center; border-radius:50%; border-color:teal"/>
+        </div>
+        <div class="col-sm-8 text-center pt-5">
+            <b>Name:  </b>{{r.name}}<br/><br>
+            <b>Mobile:  </b> {{r.mobile}}<br/><br>
+            <b>Email:  </b> {{r.email}}<br/><br>
+            <b>Address:  </b> {{r.address}}<br/><br>
+            <input type="button" id="btnEdit" class="btn btn-warning" value="Edit Profile"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 p-4 my-4 bg-dark text-light editprofileform" style="display:none;">
+         <form method="post" action="/user/profile/" enctype="multipart/form-data">
+            {% csrf_token %}
+             Name<input type="text" name="name" value="{{r.name}}" class="form-control" value=""/>
+            Mobile<input type="number" name="mobile" value="{{r.mobile}}" class="form-control" value=""/>
+            Picture<input type="file" name="fu" class="form-control" value=""/>
+            Address<textarea class="form-control" name="address">{{r.address}}</textarea><br/>
+            <input type="submit" class="btn" style="background:teal;" value="Update"/>
+         </form>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    {% endfor%}
+    {% endif %}
+</div>
+<script>
+$(document).ready(function(){
+$("#btnEdit").click(function(){
+$(".editprofileform").slideDown("slow")
+})
+})
+</script>
+{% endblock %}
+

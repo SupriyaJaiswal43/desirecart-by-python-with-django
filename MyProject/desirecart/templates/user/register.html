@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Sign-Up</title>
+    {% endblock %}
+{% block content %}
+{% load static %}
+<style>
+
+    :focus {
+  outline: none; }
+
+.wrapper {
+  min-height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+
+  align-items: center; }
+
+.inner {
+  min-width: 850px;
+  margin: 40px auto;
+  padding-top: 68px;
+  padding-bottom: 48px;
+  border-radius:1%;
+  background: linear-gradient(to top-right,#fdfefe;1ff00f;);
+  }
+  .inner h3 {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-family: "Muli-Bold";
+    text-align: center;
+    margin-top: -50px;
+
+    color: #333;
+    letter-spacing: 2px; }
+
+form {
+  width: 94%;
+  margin:10px auto; }
+
+.form-group {
+  display: flex;
+   }
+  .form-group .form-ritu {
+    width: 50%; }
+    .form-group .form-ritu:first-child {
+      margin-right: 20px; }
+
+.form-ritu {
+  margin-bottom: 5px; }
+  .form-ritu label {
+    margin-bottom: 9px;
+    display: block; }
+
+.form-control-ritu {
+  border: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-family: "Muli-Bold";
+  background:rgba(255,186,0,0.6) ; }
+  .form-control-ritu:focus {
+    border: 1px solid orange; }
+
+  .form-control-ritut {
+  border: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  height: 70px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-family: "Muli-Bold";
+  background: none; }
+  .form-control-ritut:focus {
+    border: 1px solid red; }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-left: 20px; }
+  select option[value=""][disabled] {
+    display: none; }
+
+.ritu {
+  border: none;
+  width: 152px;
+  height: 40px;
+  margin: auto;
+  margin-top: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: teal;
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Muli-SemiBold";
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s; }
+  .ritu:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: green;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out; }
+  .ritu:hover:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66); }
+
+.checkbox {
+  position: relative; }
+  .checkbox label {
+    padding-left: 22px;
+    cursor: pointer; }
+  .checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer; }
+  .checkbox input:checked ~ .checkmark:after {
+    display: block; }
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 12px;
+  width: 13px;
+  background-color:none;
+  border: 1px solid #ccc;
+  font-family: Material-Design-Iconic-Font;
+  color: #000;
+  font-size: 10px;
+  font-weight: bolder; }
+  .checkmark:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    content: '\f26b'; }
+
+@media (max-width: 991px) {
+  .inner {
+    min-width: 768px; } }
+@media (max-width: 767px) {
+  .inner {
+    min-width: auto;
+    background: none;
+    padding-top: 0;
+    padding-bottom: 0; }
+
+  form {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px; } }
+
+.loginhere-link
+{
+text-decoration:none;
+color:black;
+font-weight:bold;}
+.loginhere-link:hover
+{
+text-decoration:none;
+color:red;
+}
+form .label{
+font-weight:bold;
+color:black;
+}
+
+</style>
+<div class="wrapper" style="background:url('{% static "images/res.jpg" %}');width:100%;background-size:100% 100%">
+			<div class="inner" style="background-size:100% 100%;">
+				<form class="form" method="post" action="/user/register/" enctype="multipart/form-data">
+					{% csrf_token %}
+					<h1 style="font-weight:bold; font-style:italic"><u>Registration Form</u></h1>
+					<div class="form-group">
+						<div class="form-ritu">
+							<label class="label"><u>Name:</u></label>
+							<input name="name" placeholder="Enter your name..." type="text" class="form-control-ritu">
+						</div>
+
+						<div class="form-ritu">
+							<label class="label"><u>Mobile:</u></label>
+							<input name="mobile" placeholder="Enter your mobile no...." type="text" class="form-control-ritu">
+						</div>
+					</div>
+
+					<div class="form-group">
+					<div class="form-ritu">
+						<label class="label"><u>Password:</u></label>
+						<input name="password" placeholder="Enter your password..." type="password" class="form-control-ritu">
+					</div>
+						<div class="form-ritu">
+						<label class="label"><u>Conform Password:</u></label>
+						<input name="cpassword" placeholder="Enter conform password..." type="password" class="form-control-ritu">
+					</div>
+					</div>
+					<div class="form-group">
+					<div class="form-ritu">
+						<label class="label"><u>Email:</u></label>
+						<input name="email" placeholder="Enter your email...." type="text" class="form-control-ritu">
+					</div>
+					<div class="form-ritu">
+						<label class="label"><u>Upload Image:</u></label>
+						<input name="userpic" type="file" style="line-height:32px;background:rgba(255,165,0,0.4);" class="form-control-ritut">
+					</div>
+					</div>
+					<div class="form-ritu">
+						<label class="label"><u>Address:</u></label>
+						<textarea name="address" placeholder="Enter your full address" style="background:rgba(255,165,0,0.4);" class="form-control-ritut"></textarea>
+
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" > <span><b>I accept the Terms of Use & Privacy Policy.</b></span>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<button class="ritu" type="submit">Register Now</button>
+
+					<center><div class="checkbox">
+						<label >
+							 Have already an account ? <a href="/user/signin/" class="loginhere-link">Login here</a>
+						</label>
+					</div></center>
+				</form>
+
+
+			</div>
+		</div>
+
+
+{% endblock %}

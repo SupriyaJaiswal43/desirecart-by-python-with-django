@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Customer Support</title>
+    {% endblock %}
+{% block content %}
+<style>
+    .newSection {
+    padding: 30px 0px;
+}
+    .sectionTitle {
+    margin: 0px auto;
+    padding: 0px;
+    text-align: center;
+    font-weight: 500;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.themeText {
+    color:teal;
+}
+
+.sectionTitle::after {
+    content: '';
+    height: 2px;
+    width: 100px;
+    background:teal;
+    display: inline-block;
+    position: absolute;
+    bottom: 3px;
+    left: calc(50% - 50px);
+}
+
+.sectionContent {
+    color: teal;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+}
+.form-control {
+    border-radius: 2px !important;
+}
+.divHeading {
+    margin-top: 0px;
+    font-size: 22px;
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+    .divHeading::after {
+        content: '';
+        height: 2px;
+        width: 40px;
+        background: teal;
+        display: block;
+        position: absolute;
+        bottom: 4px;
+        left: 4px;
+        box-shadow: -4px 0px 0px #555;
+    }
+    .contactLocation {
+    padding: 40px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    background: #f8f9fa; /* For browsers that do not support gradients */
+    border-bottom: 1px #dedede solid;
+}
+
+    .contactLocation .contact {
+        padding-top: 5px;
+        padding-left: 50px;
+        position: relative;
+        color: #666;
+    }
+
+        .contactLocation .contact i {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: teal;
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            border-radius: 50%;
+            border: 1px solid;
+            border-color: #fff;
+            font-size: 14px;
+        }
+
+        .contactLocation .contact strong {
+            color: teal;
+            font-weight: 500;
+            font-size: 16px;
+            padding-bottom: 5px;
+            display: block;
+            position: relative;
+        }
+
+            .contactLocation .contact strong::after {
+                content: '';
+                height: 2px;
+                width: 40px;
+                background: teal;
+                display: block;
+                position: absolute;
+                bottom: 3px;
+                left: 0px;
+            }
+
+        .contactLocation .contact p {
+            margin-top: 3px;
+        }
+
+            .enquery-box p a,
+            .contactLocation .contact p a {
+                color: #555;
+                display: block;
+                margin-top: 5px;
+                transition: .5s;
+            }
+
+                .enquery-box p a:hover,
+                .contactLocation .contact p a:hover {
+                    color: teal;
+                    text-decoration: none;
+                    letter-spacing: 1px;
+                }
+.divBtn {
+    text-decoration: none;
+}
+
+.divBtn {
+    color: teal;
+    text-decoration: none;
+    padding: 10px 30px;
+    padding-top: 12px;
+    border-radius: 4px;
+    border: 1px solid teal;
+    margin-top: 5px;
+    display: inline-block;
+    transition: all ease .5s;
+    position: relative;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+a.divBtn:hover,
+.divBtn:hover {
+    background:teal;
+    color:#fff;
+}
+
+input.divBtn {
+    background:#fff;
+}
+
+.divBtn::after {
+    content: '';
+    height: 72px;
+    width: 25px;
+    display: block;
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #fffc, transparent);
+    top: -12px;
+    left: -40px;
+    transform: skewX(-30deg);
+    transition: .3s;
+    transition-delay: .5s;
+}
+
+.divBtn:hover::after {
+    left: calc(100% + 50px);
+}
+
+.textareanc, .inputnc {
+    font-size: 14px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+.form-control {
+    border-radius: 2px !important;
+}
+</style>
+
+<div class="container-fluid newSection bg-light">
+    <h1 class="sectionTitle" style="font-style:italic;"><span class="themeText" style="font-style:italic;" >Contact</span>  With Us</h1>
+    <p class="sectionContent">
+        You may contact us by contact number or filling in this form any time you need professional support or have any question.
+    </p>
+    <div class="container bg-white rounded pb-5 pl-5 pr-5 pt-3">
+        <div class="col text-center">
+
+        </div>
+        <div class="row">
+            <div class="col-sm-7 mt-4">
+                <div class="row">
+                    {% if msgs %}
+                    <div class="alert alert-success">Your Message Send Successfully</div>
+                    {% endif %}
+                </div>
+                <h4 class="divHeading">Send Your Message</h4>
+                <form class="form" method="post" id="feedForm" action="/user/contact/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="mb-0 mt-3">Your Name :</label>
+                            <input type="text" name="name" class="form-control inputnc" placeholder="Enter Your Name*" required="" pattern="[A-Za-z .]{3,50}" title="Enter your name (Only valid name acceptable.)">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="mb-0 mt-3">Your Contact :</label>
+                            <input type="text" name="mobno" class="form-control inputnc" placeholder="Enter Your Contact Number*" required="" pattern="[6789]{1}[0-9]{9}" title="Enter your valid contact number">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="mb-0 mt-3">Your Email :</label>
+                            <input type="email" name="email" class="form-control inputnc" placeholder="Enter Your Email*" required="" title="Enter your email.">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="mb-0 mt-3">Your Message :</label>
+                            <textarea class="form-control textareanc" rows="4" name="msg" placeholder="Type Your Message Here*" required=""></textarea>
+                        </div>
+                        <div class="col-sm-12 mt-3">
+                            <input type="submit" class="divBtn" name="submit" value="SEND MESSAGE">
+                            <span id="error"></span>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-sm-5 mt-4">
+                <div class="col contactLocation">
+                    <h4 class="divHeading">Contact Info</h4>
+                    <div class="contact">
+                        <i class="fa fa-map-marker"></i>
+                        <strong>Address</strong>
+                        <p>
+                            Lambhua,Sultanpur<br>
+                            Uttar Pradesh,<br>
+                            India <br>
+                            Uttar Pradesh 222302
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <i class="fa fa-phone"></i>
+                        <strong>Call Us</strong>
+                        <p>
+                            <a href="tel:+91 8418869970">+91 9140135020</a>
+                            <a href="tel:+91 7007597910">+91 7068537514</a>
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <i class="fa fa-envelope"></i>
+                        <strong>Mail Us</strong>
+                        <p>
+                            <a href="mailto:yadavji232333@gmail.com">jharitanjali@gmail.com</a>
+                            <a href="mailto:slssatyendra@gmail.com">r@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid newSection">
+    <h2 class="sectionTitle" style="font-style:italic;">Find us on <span class="themeText" style="font-style:italic;">Google Map</span></h2>
+    <p class="sectionContent">
+        View us on google map easily
+    </p>
+    <div class="col">
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14327.42698205338!2d82.21632293610138!3d26.136213464063424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39907f429a9abefd%3A0x8263f31d63aa82d2!2sLambhua%2C%20Uttar%20Pradesh%20222302!5e0!3m2!1sen!2sin!4v1601217174239!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0; width:100%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+</div>
+    </div>
+
+
+{% endblock %}

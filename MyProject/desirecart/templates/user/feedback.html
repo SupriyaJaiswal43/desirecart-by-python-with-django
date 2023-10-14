@@ -1,0 +1,1016 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Feedback</title>
+    {% endblock %}
+{% block content %}
+{% load static %}
+
+
+
+<style>
+.newSection {
+    padding: 30px 0px;
+
+}
+.sectionTitle {
+    margin: 0px auto;
+    padding: 0px;
+    text-align: center;
+    font-weight: 500;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.themeText {
+    color: #fbaf0c;
+}
+
+.sectionTitle::after {
+    content: '';
+    height: 2px;
+    width: 100px;
+    background: teal;
+    display: inline-block;
+    position: absolute;
+    bottom: 3px;
+    left: calc(50% - 50px);
+}
+
+.sectionContent {
+    color: #555;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+}
+.feebBackImg img {
+    width: 100%;
+    max-height: 400px;
+    opacity: .8;
+    border-radius: 4px;
+}
+.divHeading {
+    margin-top: 0px;
+    font-size: 22px;
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+    .divHeading::after {
+        content: '';
+        height: 2px;
+        width: 40px;
+        background: teal;
+        display: block;
+        position: absolute;
+        bottom: 4px;
+        left: 4px;
+        box-shadow: -4px 0px 0px #555;
+    }
+.nikkuchikkut, .nikkuchikku {
+    font-size: 14px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+.form-control {
+    border-radius: 2px !important;
+}
+a.divBtn {
+    text-decoration: none;
+}
+
+.divBtn {
+    color: teal;
+    text-decoration: none;
+    padding: 10px 30px;
+    padding-top: 12px;
+    border-radius: 4px;
+    border: 1px solid teal;
+    margin-top: 5px;
+    display: inline-block;
+    transition: all ease .5s;
+    position: relative;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+a.divBtn:hover,
+.divBtn:hover {
+    background: teal;
+    color: #fff;
+}
+
+input.divBtn {
+    background: #fff;
+}
+
+.divBtn::after {
+    content: '';
+    height: 72px;
+    width: 25px;
+    display: block;
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #fffc, transparent);
+    top: -12px;
+    left: -40px;
+    transform: skewX(-30deg);
+    transition: .3s;
+    transition-delay: .5s;
+}
+
+.divBtn:hover::after {
+    left: calc(100% + 50px);
+}
+.testim {
+	  box-sizing: border-box;
+        border-radius: 4px;
+		width: 90%;
+	  margin: 0px auto;
+
+}
+
+.testim .wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    padding: 0px 20px 40px 20px;
+    margin: auto;
+}
+
+.testim .arrow {
+    display: block;
+    position: absolute;
+    color: #555;
+    cursor: pointer;
+    font-size: 2em;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+    -webkit-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    padding: 5px;
+    z-index: 50;
+}
+
+.testim .arrow:before {
+		cursor: pointer;
+}
+
+.testim .arrow:hover {
+    color: teal;
+}
+
+
+.testim .arrow.left {
+    left: 20px;
+}
+
+.testim .arrow.right {
+    right: 20px;
+}
+
+.testim .dots {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 60px;
+    left: 0;
+    display: block;
+    z-index: 10;
+	height: 12px;
+    -webkit-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.testim .dots .dot {
+    list-style-type: none;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    margin: 0 10px;
+    cursor: pointer;
+    -webkit-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+		position: relative;
+}
+
+.testim .dots .dot.active,
+.testim .dots .dot:hover {
+    background: teal;
+    border-color: teal;
+}
+
+.testim .dots .dot.active {
+    -webkit-animation: testim-scale .5s ease-in-out forwards;
+    -moz-animation: testim-scale .5s ease-in-out forwards;
+    -ms-animation: testim-scale .5s ease-in-out forwards;
+    -o-animation: testim-scale .5s ease-in-out forwards;
+    animation: testim-scale .5s ease-in-out forwards;
+}
+
+.testim .cont {
+    position: relative;
+		overflow: hidden;
+}
+
+.testim .cont > div {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 0 70px 0;
+    opacity: 0;
+}
+
+.testim .cont > div.inactive {
+    opacity: 1;
+}
+
+
+.testim .cont > div.active {
+    position: relative;
+    opacity: 1;
+}
+
+
+.testim .cont div .img img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.testim .cont div h2 {
+    color: teal;
+    font-size: 16px;
+    margin: 10px 0 0;
+}
+.testim .cont div small h2 {
+    margin: 4px 0 10px;
+    font-size: 13px;
+}
+
+.testim .cont div p {
+    color: #444;
+    width: 80%;
+    margin: auto;
+}
+
+.testim .cont div.active .img img {
+    -webkit-animation: testim-show .5s ease-in-out forwards;
+    -moz-animation: testim-show .5s ease-in-out forwards;
+    -ms-animation: testim-show .5s ease-in-out forwards;
+    -o-animation: testim-show .5s ease-in-out forwards;
+    animation: testim-show .5s ease-in-out forwards;
+}
+
+.testim .cont div.active h2 {
+    -webkit-animation: testim-content-in .4s ease-in-out forwards;
+    -moz-animation: testim-content-in .4s ease-in-out forwards;
+    -ms-animation: testim-content-in .4s ease-in-out forwards;
+    -o-animation: testim-content-in .4s ease-in-out forwards;
+    animation: testim-content-in .4s ease-in-out forwards;
+}
+
+.testim .cont div.active p {
+    -webkit-animation: testim-content-in .5s ease-in-out forwards;
+    -moz-animation: testim-content-in .5s ease-in-out forwards;
+    -ms-animation: testim-content-in .5s ease-in-out forwards;
+    -o-animation: testim-content-in .5s ease-in-out forwards;
+    animation: testim-content-in .5s ease-in-out forwards;
+}
+
+.testim .cont div.inactive .img img {
+    -webkit-animation: testim-hide .5s ease-in-out forwards;
+    -moz-animation: testim-hide .5s ease-in-out forwards;
+    -ms-animation: testim-hide .5s ease-in-out forwards;
+    -o-animation: testim-hide .5s ease-in-out forwards;
+    animation: testim-hide .5s ease-in-out forwards;
+}
+
+.testim .cont div.inactive h2 {
+    -webkit-animation: testim-content-out .4s ease-in-out forwards;
+    -moz-animation: testim-content-out .4s ease-in-out forwards;
+    -ms-animation: testim-content-out .4s ease-in-out forwards;
+    -o-animation: testim-content-out .4s ease-in-out forwards;
+    animation: testim-content-out .4s ease-in-out forwards;
+}
+
+.testim .cont div.inactive p {
+    -webkit-animation: testim-content-out .5s ease-in-out forwards;
+    -moz-animation: testim-content-out .5s ease-in-out forwards;
+    -ms-animation: testim-content-out .5s ease-in-out forwards;
+    -o-animation: testim-content-out .5s ease-in-out forwards;
+    animation: testim-content-out .5s ease-in-out forwards;
+}
+
+@-webkit-keyframes testim-scale {
+    0% {
+        -webkit-box-shadow: 0px 0px 0px 0px #555;
+        box-shadow: 0px 0px 0px 0px #555;
+    }
+
+    35% {
+        -webkit-box-shadow: 0px 0px 10px 5px teal;
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    70% {
+        -webkit-box-shadow: 0px 0px 10px 5px teal;
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    100% {
+        -webkit-box-shadow: 0px 0px 0px 0px teal;
+        box-shadow: 0px 0px 0px 0px teal;
+    }
+}
+
+@-moz-keyframes testim-scale {
+    0% {
+        -moz-box-shadow: 0px 0px 0px 0px #555;
+        box-shadow: 0px 0px 0px 0px #555;
+    }
+
+    35% {
+        -moz-box-shadow: 0px 0px 10px 5px #555;
+        box-shadow: 0px 0px 10px 5px #555;
+    }
+
+    70% {
+        -moz-box-shadow: 0px 0px 10px 5px teal;
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    100% {
+        -moz-box-shadow: 0px 0px 0px 0px teal;
+        box-shadow: 0px 0px 0px 0px teal;
+    }
+}
+
+@-ms-keyframes testim-scale {
+    0% {
+        -ms-box-shadow: 0px 0px 0px 0px #555;
+        box-shadow: 0px 0px 0px 0px #555;
+    }
+
+    35% {
+        -ms-box-shadow: 0px 0px 10px 5px #555;
+        box-shadow: 0px 0px 10px 5px #555;
+    }
+
+    70% {
+        -ms-box-shadow: 0px 0px 10px 5px teal;
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    100% {
+        -ms-box-shadow: 0px 0px 0px 0px teal;
+        box-shadow: 0px 0px 0px 0px teal;
+    }
+}
+
+@-o-keyframes testim-scale {
+    0% {
+        -o-box-shadow: 0px 0px 0px 0px #555;
+        box-shadow: 0px 0px 0px 0px #555;
+    }
+
+    35% {
+        -o-box-shadow: 0px 0px 10px 5px #555;
+        box-shadow: 0px 0px 10px 5px #555;
+    }
+
+    70% {
+        -o-box-shadow: 0px 0px 10px 5px teal;
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    100% {
+        -o-box-shadow: 0px 0px 0px 0px teal;
+        box-shadow: 0px 0px 0px 0px teal;
+    }
+}
+
+@keyframes testim-scale {
+    0% {
+        box-shadow: 0px 0px 0px 0px teal;
+    }
+
+    35% {
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    70% {
+        box-shadow: 0px 0px 10px 5px teal;
+    }
+
+    100% {
+        box-shadow: 0px 0px 0px 0px teal;
+    }
+}
+
+@-webkit-keyframes testim-content-in {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@-moz-keyframes testim-content-in {
+    from {
+        opacity: 0;
+        -moz-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        -moz-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@-ms-keyframes testim-content-in {
+    from {
+        opacity: 0;
+        -ms-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@-o-keyframes testim-content-in {
+    from {
+        opacity: 0;
+        -o-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes testim-content-in {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes testim-content-out {
+    from {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}
+
+@-moz-keyframes testim-content-out {
+    from {
+        opacity: 1;
+        -moz-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        -moz-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}
+
+@-ms-keyframes testim-content-out {
+    from {
+        opacity: 1;
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}
+
+@-o-keyframes testim-content-out {
+    from {
+        opacity: 1;
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes testim-content-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+@-webkit-keyframes testim-show {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes testim-show {
+    from {
+        opacity: 0;
+        -moz-transform: scale(0);
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        -moz-transform: scale(2);
+        transform: scale(2);
+    }
+}
+
+@-ms-keyframes testim-show {
+    from {
+        opacity: 0;
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-o-keyframes testim-show {
+    from {
+        opacity: 0;
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes testim-show {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes testim-hide {
+    from {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@-moz-keyframes testim-hide {
+    from {
+        opacity: 1;
+        -moz-transform: scale(2);
+        transform: scale(2);
+    }
+
+    to {
+        opacity: 0;
+        -moz-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@-ms-keyframes testim-hide {
+    from {
+        opacity: 1;
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@-o-keyframes testim-hide {
+    from {
+        opacity: 1;
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes testim-hide {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+</style>
+
+<div class="container-fluid newSection bg-light">
+    <h1 class="sectionTitle" style="font-style:italic;">Your Valuable <span class="themeText" style="color:teal; font-style:italic;">Feedback</span> </h1>
+    <p class="sectionContent">
+        We appriciate to your valuable feedback and we are always focused on it.
+    </p>
+    <div class="container bg-white rounded pb-5 pl-5 pr-5 pt-3">
+        <div class="col text-center">
+
+        </div>
+        <div class="row flex-column-reverse flex-lg-row">
+            <div class="col-sm-6 mt-4 feebBackImg">
+                <img src="{% static 'images/feedback.jpg'%}">
+            </div>
+            <div class="col-sm-6 mt-4">
+                <div class="row">
+                    {% if msgs %}
+                    <div class="alert alert-success">Your Message Send Successfully</div>
+                    {% endif %}
+                </div>
+                <h4 class="divHeading">Add Your Feedback </h4>
+                <form class="form" method="post" id="feedForm" action="/user/feedback/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="mb-0 mt-3">Your Name :</label>
+                            <input type="text" name="name" class="form-control nikkuchikku" placeholder="Enter Your Name*" required="" pattern="[A-Za-z .]{3,50}" title="Enter your name (Only valid name acceptable.)">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="mb-0 mt-3">Your Image :</label>
+                            <input type="file" name="img" class="form-control nikkuchikku" required="" title="Your profile picture">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="mb-0 mt-3">You're From :</label>
+                            <input type="text" name="state" class="form-control nikkuchikku" placeholder="Enter Your State*" required="" pattern="[A-Za-z0-9 .]{3,50}" title="Enter Your State name">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="mb-0 mt-3">Your Feedback :</label>
+                            <textarea class="form-control nikkuchikkut" rows="4" name="msg" placeholder="Your valuable feedback*" required=""></textarea>
+                        </div>
+                        <div class="col-sm-12 mt-3">
+                            <input type="submit" class="divBtn" name="submit" value="SEND FEEDBACK">
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- Start Testimonials -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 newSection">
+                <h1 class="sectionTitle" style="font-style:italic;">Our <span class="themeText" style="color:teal;font-style:italic;">Testimonials</span> </h1>
+                <p class="sectionContent">
+                    Trusted by over 100M+ Customers across all over world.
+                </p>
+            </div>
+            <div class="col-md-12">
+
+                <section id="testim" class="testim">
+                    <div class="wrap">
+                        <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
+                        <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
+                        <ul id="testim-dots" class="dots">
+                            {% for g in data1 %}
+                            <li class="dot"></li>
+                            {% endfor %}
+                        </ul>
+                        <div id="testim-content" class="cont">
+                {% if data1 %}
+                            {% for f in data1 %}
+                                <div class="">
+                                    <div class="img">
+                                        <img src="/{{f.img}}" alt="Testimonial"></div>
+                                    <h2 class="mb-0" style="font-size:25px;">{{f.name}}</h2>
+                                    <small>
+                                        <h2>{{f.state}}</h2>
+                                    </small>
+                                    <p>{{f.msg}}</p>
+                                </div>
+                            {% endfor %}
+                {% endif %}
+                        </div>
+                    </div>
+                </section>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--/ End Testimonials -->
+
+
+
+
+
+
+
+    </div>
+
+<script>
+                    // vars
+                    'use strict'
+                    var testim = document.getElementById("testim"),
+                            testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
+                        testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
+                        testimLeftArrow = document.getElementById("left-arrow"),
+                        testimRightArrow = document.getElementById("right-arrow"),
+                        testimSpeed = 3000,
+                        currentSlide = 0,
+                        currentActive = 0,
+                        testimTimer,
+                            touchStartPos,
+                            touchEndPos,
+                            touchPosDiff,
+                            ignoreTouch = 30;
+                    ;
+
+                    window.onload = function () {
+
+                        // Testim Script
+                        function playSlide(slide) {
+                            for (var k = 0; k < testimDots.length; k++) {
+                                testimContent[k].classList.remove("active");
+                                testimContent[k].classList.remove("inactive");
+                                testimDots[k].classList.remove("active");
+                            }
+
+                            if (slide < 0) {
+                                slide = currentSlide = testimContent.length - 1;
+                            }
+
+                            if (slide > testimContent.length - 1) {
+                                slide = currentSlide = 0;
+                            }
+
+                            if (currentActive != currentSlide) {
+                                testimContent[currentActive].classList.add("inactive");
+                            }
+                            testimContent[slide].classList.add("active");
+                            testimDots[slide].classList.add("active");
+
+                            currentActive = currentSlide;
+
+                            clearTimeout(testimTimer);
+                            testimTimer = setTimeout(function () {
+                                playSlide(currentSlide += 1);
+                            }, testimSpeed)
+                        }
+
+                        testimLeftArrow.addEventListener("click", function () {
+                            playSlide(currentSlide -= 1);
+                        })
+
+                        testimRightArrow.addEventListener("click", function () {
+                            playSlide(currentSlide += 1);
+                        })
+
+                        for (var l = 0; l < testimDots.length; l++) {
+                            testimDots[l].addEventListener("click", function () {
+                                playSlide(currentSlide = testimDots.indexOf(this));
+                            })
+                        }
+
+                        playSlide(currentSlide);
+
+                        // keyboard shortcuts
+                        document.addEventListener("keyup", function (e) {
+                            switch (e.keyCode) {
+                                case 37:
+                                    testimLeftArrow.click();
+                                    break;
+
+                                case 39:
+                                    testimRightArrow.click();
+                                    break;
+
+                                case 39:
+                                    testimRightArrow.click();
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        })
+
+                        testim.addEventListener("touchstart", function (e) {
+                            touchStartPos = e.changedTouches[0].clientX;
+                        })
+
+                        testim.addEventListener("touchend", function (e) {
+                            touchEndPos = e.changedTouches[0].clientX;
+
+                            touchPosDiff = touchStartPos - touchEndPos;
+
+                            console.log(touchPosDiff);
+                            console.log(touchStartPos);
+                            console.log(touchEndPos);
+
+
+                            if (touchPosDiff > 0 + ignoreTouch) {
+                                testimLeftArrow.click();
+                            } else if (touchPosDiff < 0 - ignoreTouch) {
+                                testimRightArrow.click();
+                            } else {
+                                return;
+                            }
+
+                        })
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <!--/ End Testimonials -->
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <script type="text/javascript">
+        // Running the code when the document is ready
+        $(document).ready(function () {
+            // Calling LayerSlider on the target element with adding custom slider options
+            $('#layerslider').layerSlider({
+                autoStart: true,
+                pauseOnHover: true,
+                navPrevNext: false,
+                navButtons: true,
+                navStartStop: true,
+                thumbnailNavigation: false,
+                autoPlayVideos: false,
+                firstLayer: 1,
+                skin: 'borderlesslight',
+                skinsPath: 'lib/layerslider/skins/'
+                // Please make sure that you didn't forget to add a comma to the line endings
+                // except the last line!
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        // Running the code when the document is ready
+        $(document).ready(function () {
+            // Calling LayerSlider on the target element
+            $('#layerslider2').layerSlider({
+                autoStart: true,
+                pauseOnHover: true,
+                navPrevNext: false,
+                navButtons: true,
+                thumbnailNavigation: false,
+                autoPlayVideos: false,
+                firstLayer: 1,
+                skin: 'borderlesslight',
+                skinsPath: 'lib/layerslider/skins/'
+            });
+        });
+    </script>
+    <!-- end layerslider script-->
+
+    <!----Hide Loader -->
+    <script>
+        $(window).on('load', function () {
+
+            $(".logo").fadeOut();
+
+            $(".strips").delay(200).addClass('hideStrip');
+
+            $("#loader").delay(600).fadeOut();
+
+        })
+
+    </script>
+    <!----Hide Loader -->
+    <script>
+        window.oncontextmenu = function () {
+            return false;
+        }
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;
+            }
+            else if (event.ctrlKey && event.keyCode == 85) {
+                return false;
+            }
+        })
+    </script>
+
+
+
+
+
+
+
+
+{% endblock %}
